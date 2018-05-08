@@ -5,14 +5,14 @@ namespace Dime.Maps
     /// <summary>
     /// Represents extra options that go in the request
     /// </summary>
-    public class PtvRequestOption
+    internal class PtvRequestOption
     {
         #region Constructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PtvRequestOption"/> class
         /// </summary>
-        public PtvRequestOption()
+        internal PtvRequestOption()
         {
         }
 
@@ -22,7 +22,7 @@ namespace Dime.Maps
         /// <param name="param"></param>
         /// <param name="value"></param>
         /// <param name="type"></param>
-        public PtvRequestOption(string param, string value)
+        internal PtvRequestOption(string param, string value)
         {
             Param = param;
             Value = value;
@@ -34,7 +34,7 @@ namespace Dime.Maps
         /// <param name="param"></param>
         /// <param name="value"></param>
         /// <param name="type"></param>
-        public PtvRequestOption(string param, string value, string type) : this(param, value)
+        internal PtvRequestOption(string param, string value, string type) : this(param, value)
         {
             Type = type;
         }
@@ -44,13 +44,13 @@ namespace Dime.Maps
         #region Properties
 
         [JsonProperty("$type")]
-        public string Type { get; set; } = "SearchOption";
+        internal string Type { get; set; } = "SearchOption";
 
         [JsonProperty("param")]
-        public string Param { get; set; }
+        internal string Param { get; set; }
 
         [JsonProperty("value")]
-        public string Value { get; set; }
+        internal string Value { get; set; }
 
         #endregion Properties
     }

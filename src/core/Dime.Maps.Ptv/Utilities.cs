@@ -10,7 +10,7 @@ namespace Dime.Maps
         /// </summary>
         /// <param name="plainText">The text to encode</param>
         /// <returns>The same string but encoded</returns>
-        public static string Base64Encode(this string plainText)
+        internal static string Base64Encode(this string plainText)
         {
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
             return Convert.ToBase64String(plainTextBytes);

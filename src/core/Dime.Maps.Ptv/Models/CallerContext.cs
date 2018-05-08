@@ -6,14 +6,14 @@ namespace Dime.Maps
     /// <summary>
     /// Represents a placeholder to include instructions to the request
     /// </summary>
-    public class CallerContext
+    internal class CallerContext
     {
         #region Constructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CallerContext"/> class
         /// </summary>
-        public CallerContext()
+        internal CallerContext()
         {
         }
 
@@ -25,7 +25,7 @@ namespace Dime.Maps
         /// Gets or sets the properties
         /// </summary>
         [JsonProperty("properties")]
-        public Property[] Properties { get; set; }
+        internal Property[] Properties { get; set; }
 
         #endregion Properties
 

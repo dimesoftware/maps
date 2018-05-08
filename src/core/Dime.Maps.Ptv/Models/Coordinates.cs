@@ -5,14 +5,14 @@ namespace Dime.Maps
     /// <summary>
     /// Represents a wrapper around the coordinate to include the type
     /// </summary>
-    public class Coordinates
+    internal class Coordinates
     {
         #region Constructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Coordinates"/> class
         /// </summary>
-        public Coordinates()
+        internal Coordinates()
         {
         }
 
@@ -24,13 +24,13 @@ namespace Dime.Maps
         /// Gets or sets the coordinate
         /// </summary>
         [JsonProperty("point")]
-        public Point Point { get; set; }
+        internal Point Point { get; set; }
 
         /// <summary>
         /// Gets or sets the coordinate
         /// </summary>
         [JsonProperty("$type")]
-        public string Type { get; set; }
+        internal string Type { get; set; }
 
         #endregion Properties
     }

@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\core\Dime.Maps.csproj" />
+    <ProjectReference Include="..\core\Dime.Maps.Ptv\Dime.Maps.Ptv.csproj" />
   </ItemGroup>
 
 </Project>

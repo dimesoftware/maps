@@ -3,7 +3,10 @@ using Refit;
 
 namespace Dime.Maps
 {
-    public interface IPtvApi
+    /// <summary>
+    /// Defines the api that PTV exposes
+    /// </summary>
+    internal interface IPtvApi
     {
         [Post("/xlocate/rs/XLocate/findAddress")]
         [Headers("cache-control: no-cache, content-type: application/json")]

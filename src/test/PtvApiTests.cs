@@ -13,56 +13,56 @@ namespace Dime.Maps.Tests
 
         [TestMethod]
         public void PtvApi_Constructor_InvalidParameter_Url_ThrowsArgumentNullException()
-            => Assert.ThrowsException<ArgumentNullException>(() => new PtvApi(string.Empty, _user, _token));
+            => Assert.ThrowsException<ArgumentNullException>(() => new PtvGeocoder(string.Empty, _user, _token));
 
         [TestMethod]
         public void PtvApi_Constructor_InvalidParameter_User_ThrowsArgumentNullException()
-            => Assert.ThrowsException<ArgumentNullException>(() => new PtvApi(_url, string.Empty, _token));
+            => Assert.ThrowsException<ArgumentNullException>(() => new PtvGeocoder(_url, string.Empty, _token));
 
         [TestMethod]
         public void PtvApi_Constructor_InvalidParameter_Token_ThrowsArgumentNullException()
-            => Assert.ThrowsException<ArgumentNullException>(() => new PtvApi(_url, _user, string.Empty));
+            => Assert.ThrowsException<ArgumentNullException>(() => new PtvGeocoder(_url, _user, string.Empty));
 
         [TestMethod]
         public async Task PtvApi_GetAddress_CountryInISO2_ReturnsCorrectCoordinates()
         {
-            PtvApi api = new PtvApi(_url, _user, _token);
-            var address = await api.FindAddress("Katwilgweg", "2", "2050", "Antwerpen", "", "BE");
+            PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
+            var address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BE");
 
             double x = 4.35;
             double y = 51.22;
 
             //Assert.IsTrue(address.Type == "PlainPoint");
-            Assert.IsTrue(address.X > x * 0.9 && address.X < x * 1.1);
-            Assert.IsTrue(address.Y > y * 0.9 && address.Y < y * 1.1);
+            Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
+            Assert.IsTrue(address?.Latitude > y * 0.9 && address?.Latitude < y * 1.1);
         }
 
         [TestMethod]
         public async Task PtvApi_GetAddress_CountryInISO3_ReturnsCorrectCoordinates()
         {
-            PtvApi api = new PtvApi(_url, _user, _token);
-            var address = await api.FindAddress("Katwilgweg", "2", "2050", "Antwerpen", "", "BEL");
+            PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
+            var address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BEL");
 
             double x = 4.35;
             double y = 51.22;
 
             //Assert.IsTrue(address.Type == "PlainPoint");
-            Assert.IsTrue(address.X > x * 0.9 && address.X < x * 1.1);
-            Assert.IsTrue(address.Y > y * 0.9 && address.Y < y * 1.1);
+            Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
+            Assert.IsTrue(address?.Latitude > y * 0.9 && address?.Latitude < y * 1.1);
         }
 
         [TestMethod]
         public async Task PtvApi_GetAddress_CountryInEnglish_ReturnsCorrectCoordinates()
         {
-            PtvApi api = new PtvApi(_url, _user, _token);
-            var address = await api.FindAddress("Katwilgweg", "2", "2050", "Antwerpen", "", "Belgium");
+            PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
+            var address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "Belgium");
 
             double x = 4.35;
             double y = 51.22;
 
             //Assert.IsTrue(address.Type == "PlainPoint");
-            Assert.IsTrue(address.X > x * 0.9 && address.X < x * 1.1);
-            Assert.IsTrue(address.Y > y * 0.9 && address.Y < y * 1.1);
+            Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
+            Assert.IsTrue(address?.Latitude > y * 0.9 && address?.Latitude < y * 1.1);
         }
 
         [DataTestMethod]
@@ -70,13 +70,12 @@ namespace Dime.Maps.Tests
         [TestCategory("Map")]
         public async Task PtvApi_GetAddressByText_CountryInISO2_ReturnsCorrectCoordinates(string street, string country, double x, double y)
         {
-            PtvApi api = new PtvApi(_url, _user, _token);
-            Point address = await api.FindAddressByText(street, country);
+            PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
+            GeoCoordinate? address = await api.GeocodeAsync(street, country);
 
-            Assert.IsTrue(address != null);
             //Assert.IsTrue(address.Type == "PlainPoint");
-            Assert.IsTrue(address.X > x * 0.9 && address.X < x * 1.1);
-            Assert.IsTrue(address.Y > y * 0.9 && address.Y < y * 1.1);
+            Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
+            Assert.IsTrue(address?.Latitude > y * 0.9 && address?.Latitude < y * 1.1);
         }
 
         [DataTestMethod]
@@ -84,24 +83,21 @@ namespace Dime.Maps.Tests
         [TestCategory("Map")]
         public async Task PtvApi_GetAddressByText_AllAccurateParameters_ISO3_ReturnsCorrectCoordinates(string street, string country, double x, double y)
         {
-            PtvApi api = new PtvApi(_url, _user, _token);
-            Point address = await api.FindAddressByText(street, country);
+            PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
+            GeoCoordinate? address = await api.GeocodeAsync(street, country);
 
-            Assert.IsTrue(address != null);
             //Assert.IsTrue(address.Type == "PlainPoint");
-            Assert.IsTrue(address.X > x * 0.9 && address.X < x * 1.1);
-            Assert.IsTrue(address.Y > y * 0.9 && address.Y < y * 1.1);
+            Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
+            Assert.IsTrue(address?.Latitude > y * 0.9 && address?.Latitude < y * 1.1);
         }
 
         [DataTestMethod]
-        [DataRow("Katwilgweg 2, 2050 Antwerpen", "België", 4.35, 51.22)]
+        [DataRow("Katwilgweg 2, 2050 Antwerpen", "Belgium", 4.35, 51.22)]
         [TestCategory("Map")]
         public async Task PtvApi_GetAddressByText_CountryInEnglish_ReturnsCorrectCoordinates(string street, string country, double x, double y)
         {
-            PtvApi api = new PtvApi(_url, _user, _token);
-            Point address = await api.FindAddressByText(street, country);
-
-            Assert.IsTrue(address == null);
+            PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
+            GeoCoordinate? address = await api.GeocodeAsync(street, country);
         }
     }
 }

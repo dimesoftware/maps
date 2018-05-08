@@ -6,14 +6,14 @@ namespace Dime.Maps
     /// <summary>
     /// Represents a response to the XLocate web api
     /// </summary>
-    public class AddressReponse
+    internal class AddressReponse
     {
         #region Constructor
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AddressReponse"/> class
         /// </summary>
-        public AddressReponse()
+        internal AddressReponse()
         {
         }
 
@@ -25,19 +25,19 @@ namespace Dime.Maps
         /// Gets or sets the error code
         /// </summary>
         [JsonProperty("errorCode")]
-        public long ErrorCode { get; set; }
+        internal long ErrorCode { get; set; }
 
         /// <summary>
         /// Gets or sets the error description
         /// </summary>
         [JsonProperty("errorDescription")]
-        public string ErrorDescription { get; set; }
+        internal string ErrorDescription { get; set; }
 
         /// <summary>
         /// Gets or sets the result list
         /// </summary>
         [JsonProperty("resultList")]
-        public ResultList[] ResultList { get; set; }
+        internal ResultList[] ResultList { get; set; }
 
         private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
         {
@@ -53,7 +53,7 @@ namespace Dime.Maps
         /// Gets the coordinates from the instance
         /// </summary>
         /// <returns>The instance of the coordinate is not null</returns>
-        public Point GetCoordinates()
+        internal Point GetCoordinates()
         {
             if (!ResultList.Any())
                 return null;
@@ -70,13 +70,13 @@ namespace Dime.Maps
         /// </summary>
         /// <param name="json">The json string to deserialize</param>
         /// <returns>A populated address response</returns>
-        public static AddressReponse FromJson(string json) => JsonConvert.DeserializeObject<AddressReponse>(json, Settings);
+        internal static AddressReponse FromJson(string json) => JsonConvert.DeserializeObject<AddressReponse>(json, Settings);
 
         /// <summary>
         /// Serializes the address response
         /// </summary>
         /// <returns>A serialized string</returns>
-        public string ToJson() => JsonConvert.SerializeObject(this, Settings);
+        internal string ToJson() => JsonConvert.SerializeObject(this, Settings);
 
         #endregion Methods
     }
