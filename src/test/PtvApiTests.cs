@@ -32,6 +32,7 @@ namespace Dime.Maps.Tests
             double x = 4.35;
             double y = 51.22;
 
+
             //Assert.IsTrue(address.Type == "PlainPoint");
             Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
             Assert.IsTrue(address?.Latitude > y * 0.9 && address?.Latitude < y * 1.1);
@@ -93,11 +94,21 @@ namespace Dime.Maps.Tests
 
         [DataTestMethod]
         [DataRow("Katwilgweg 2, 2050 Antwerpen", "Belgium", 4.35, 51.22)]
+        [DataRow("192 Market Square, , B27 4KT, Birmingham", "GB", 0, 0)]
         [TestCategory("Map")]
         public async Task PtvApi_GetAddressByText_CountryInEnglish_ReturnsCorrectCoordinates(string street, string country, double x, double y)
         {
             PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
             GeoCoordinate? address = await api.GeocodeAsync(street, country);
+        }
+
+        [DataTestMethod]
+        [DataRow("Maschstraße - K36, P. Nr. 1718067, 32120, Hiddenhausen", "DE")]
+        [TestCategory("Map")]
+        public async Task PtvApi_GetAddressByText(string address, string country)
+        {
+            PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
+            GeoCoordinate? result = await api.GeocodeAsync(address, country);
         }
     }
 }

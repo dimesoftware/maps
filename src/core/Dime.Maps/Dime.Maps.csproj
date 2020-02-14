@@ -1,22 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;netstandard2.0;net461</TargetFrameworks>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Dimenics</Authors>
     <Company>Dimenics</Company>
     <Product>Dimenics</Product>
     <PackageIconUrl>http://dimenuget.azurewebsites.net/Images/dimenuget.png</PackageIconUrl>
-    <Copyright>Copyright © 2018</Copyright>
+    <Copyright>Copyright © 2020</Copyright>
     <NeutralLanguage>engl</NeutralLanguage>
     <IncludeSymbols>true</IncludeSymbols>
     <Description>Geocoder and other map utilities</Description>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="refit" Version="4.3.0" />
-  </ItemGroup>
 
 </Project>

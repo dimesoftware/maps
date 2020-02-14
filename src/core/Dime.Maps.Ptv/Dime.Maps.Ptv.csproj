@@ -1,15 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net461;netcoreapp2.0</TargetFrameworks>
-    <Authors>Dimenics</Authors>
-    <Company>Dimenics</Company>
+    <TargetFrameworks>netstandard2.1;netstandard2.0;net461</TargetFrameworks>
+    <Authors>Dime</Authors>
+    <Company>Dime</Company>
     <Product>Dime</Product>
     <Description>Geocoding using PTV</Description>
-    <Copyright>Copyright © 2018</Copyright>
+    <Copyright>Copyright © 2020</Copyright>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageIconUrl>http://dimenuget.azurewebsites.net/Images/dimenuget.png</PackageIconUrl>
-    <Version>1.0.2</Version>
+    <Version>1.1.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <PackageReleaseNotes>- Refactor from Dime.Scheduler and use Refit instead of Resharper</PackageReleaseNotes>
@@ -17,7 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="refit" Version="4.3.0" />
+    <PackageReference Include="Refit" Version="5.0.23" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
 
   <ItemGroup>
