@@ -19,6 +19,7 @@ namespace Dime.Maps.Tests
             IConfigurationRoot settings = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", false)
                 .AddJsonFile("appsettings.development.json", true)
+                .AddJsonFile("appsettings.test.json", true)
                 .Build();
 
             foreach ((string key, string value) in settings.AsEnumerable())
