@@ -7,7 +7,7 @@ using Refit;
 namespace Dime.Maps
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public class PtvGeocoder : IGeocoder
     {
@@ -28,19 +28,12 @@ namespace Dime.Maps
             if (string.IsNullOrEmpty(token))
                 throw new ArgumentNullException(nameof(token));
 
-
             Uri = url;
             AuthorizationCode = $"{user}:{token}".Base64Encode();
         }
 
-        #region Properties
-
         private string Uri { get; }
         private string AuthorizationCode { get; }
-
-        #endregion Properties
-
-        #region Methods
 
         /// <summary>
         /// Finds the address using the fragmented fields
@@ -81,7 +74,7 @@ namespace Dime.Maps
             AddressReponse resp = await ptvApi.GetAddressByText(addressRequest, "Basic " + AuthorizationCode);
 
             Point coordinates = resp.GetCoordinates();
-            return coordinates != null ? new GeoCoordinate(coordinates.Y, coordinates.X) : (GeoCoordinate?) null;
+            return coordinates != null ? new GeoCoordinate(coordinates.Y, coordinates.X) : (GeoCoordinate?)null;
         }
 
         /// <summary>
@@ -101,8 +94,5 @@ namespace Dime.Maps
 
             yield return new PtvRequestOption("COUNTRY_CODETYPE", ((int)codeType).ToString());
         }
-
-        #endregion Methods
-
     }
 }

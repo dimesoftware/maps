@@ -8,18 +8,12 @@ namespace Dime.Maps
     /// </summary>
     internal class GeocodeRequest
     {
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="GeocodeRequest"/> class
         /// </summary>
         internal GeocodeRequest()
         {
         }
-
-        #endregion Constructor
-
-        #region Properties
 
         /// <summary>
         /// Gets or sets the identifier
@@ -36,7 +30,5 @@ namespace Dime.Maps
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
         internal EntityType Type { get; set; }
-
-        #endregion Properties
     }
 }

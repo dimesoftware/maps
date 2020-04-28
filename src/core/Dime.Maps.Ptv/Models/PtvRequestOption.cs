@@ -7,8 +7,6 @@ namespace Dime.Maps
     /// </summary>
     internal class PtvRequestOption
     {
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="PtvRequestOption"/> class
         /// </summary>
@@ -39,10 +37,6 @@ namespace Dime.Maps
             Type = type;
         }
 
-        #endregion Constructor
-
-        #region Properties
-
         [JsonProperty("$type")]
         internal string Type { get; set; } = "SearchOption";
 
@@ -51,7 +45,5 @@ namespace Dime.Maps
 
         [JsonProperty("value")]
         internal string Value { get; set; }
-
-        #endregion Properties
     }
 }

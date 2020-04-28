@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dime.Maps.Tests
@@ -7,9 +9,36 @@ namespace Dime.Maps.Tests
     [TestClass]
     public class PtvApiTests
     {
-        private readonly string _token = "980CF3CC-02CC-47CE-BD4E-BC434E92A3F7";
-        private readonly string _user = "xtok";
-        private readonly string _url = "https://api-eu-test.cloud.ptvgroup.com";
+        private string _token;
+        private string _user;
+        private string _url;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            IConfigurationRoot settings = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", false)
+                .AddJsonFile("appsettings.development.json", true)
+                .Build();
+
+            foreach ((string key, string value) in settings.AsEnumerable())
+            {
+                switch (key)
+                {
+                    case "token":
+                        _token = value;
+                        break;
+                    case "user":
+                        _user = value;
+                        break;
+                    case "url":
+                        _url = value;
+                        break;
+                    default:
+                        continue;
+                }
+            }
+        }
 
         [TestMethod]
         public void PtvApi_Constructor_InvalidParameter_Url_ThrowsArgumentNullException()
@@ -27,11 +56,10 @@ namespace Dime.Maps.Tests
         public async Task PtvApi_GetAddress_CountryInISO2_ReturnsCorrectCoordinates()
         {
             PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
-            var address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BE");
+            GeoCoordinate? address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BE");
 
             double x = 4.35;
             double y = 51.22;
-
 
             //Assert.IsTrue(address.Type == "PlainPoint");
             Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
@@ -42,7 +70,7 @@ namespace Dime.Maps.Tests
         public async Task PtvApi_GetAddress_CountryInISO3_ReturnsCorrectCoordinates()
         {
             PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
-            var address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BEL");
+            GeoCoordinate? address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BEL");
 
             double x = 4.35;
             double y = 51.22;
@@ -56,7 +84,7 @@ namespace Dime.Maps.Tests
         public async Task PtvApi_GetAddress_CountryInEnglish_ReturnsCorrectCoordinates()
         {
             PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
-            var address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "Belgium");
+            GeoCoordinate? address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "Belgium");
 
             double x = 4.35;
             double y = 51.22;

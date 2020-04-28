@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Dime.Maps
 {
@@ -8,8 +8,6 @@ namespace Dime.Maps
     /// </summary>
     internal class CallerContext
     {
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="CallerContext"/> class
         /// </summary>
@@ -17,19 +15,11 @@ namespace Dime.Maps
         {
         }
 
-        #endregion Constructor
-
-        #region Properties
-
         /// <summary>
         /// Gets or sets the properties
         /// </summary>
         [JsonProperty("properties")]
         internal Property[] Properties { get; set; }
-
-        #endregion Properties
-
-        #region Methods
 
         /// <summary>
         /// Short-hand method for constructng an instance of <see cref="CallerContext"/> with default properties
@@ -42,7 +32,5 @@ namespace Dime.Maps
                 new Property("CoordFormat","OG_GEODECIMAL")
             }.ToArray()
         };
-
-        #endregion Methods
     }
 }

@@ -7,8 +7,6 @@ namespace Dime.Maps
     /// </summary>
     internal class Address
     {
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Address"/> class
         /// </summary>
@@ -43,10 +41,6 @@ namespace Dime.Maps
             State = state;
             Country = country;
         }
-
-        #endregion Constructor
-
-        #region Properties
 
         /// <summary>
         /// Gets or sets the street
@@ -89,7 +83,5 @@ namespace Dime.Maps
         /// </summary>
         [JsonProperty("country")]
         internal string Country { get; set; }
-
-        #endregion Properties
     }
 }

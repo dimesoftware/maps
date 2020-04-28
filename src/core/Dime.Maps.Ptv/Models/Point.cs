@@ -7,18 +7,12 @@ namespace Dime.Maps
     /// </summary>
     internal class Point
     {
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Point"/> class
         /// </summary>
         internal Point()
         {
         }
-
-        #endregion Constructor
-
-        #region Properties
 
         /// <summary>
         /// Gets or sets the type
@@ -37,7 +31,5 @@ namespace Dime.Maps
         /// </summary>
         [JsonProperty("y")]
         internal double Y { get; set; }
-
-        #endregion Properties
     }
 }

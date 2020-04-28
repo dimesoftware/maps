@@ -7,18 +7,12 @@ namespace Dime.Maps
     /// </summary>
     internal class ResultList
     {
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ResultList"/> class
         /// </summary>
         internal ResultList()
         {
         }
-
-        #endregion Constructor
-
-        #region Properties
 
         /// <summary>
         /// Gets or sets the additional fields
@@ -115,7 +109,5 @@ namespace Dime.Maps
         /// </summary>
         [JsonProperty("$type")]
         internal string Type { get; set; }
-
-        #endregion Properties
     }
 }

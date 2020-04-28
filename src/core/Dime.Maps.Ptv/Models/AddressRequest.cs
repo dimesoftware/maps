@@ -7,8 +7,6 @@ namespace Dime.Maps
     /// </summary>
     internal class AddressRequest
     {
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AddressRequest"/> class
         /// </summary>
@@ -26,10 +24,6 @@ namespace Dime.Maps
             Address = address;
             CallerContext = callerContext;
         }
-
-        #endregion Constructor
-
-        #region Properties
 
         /// <summary>
         /// Gets or sets the additional fields
@@ -67,10 +61,6 @@ namespace Dime.Maps
             DateParseHandling = DateParseHandling.None
         };
 
-        #endregion Properties
-
-        #region Methods
-
         /// <summary>
         /// Deserializes the json into a populated address request
         /// </summary>
@@ -83,7 +73,5 @@ namespace Dime.Maps
         /// </summary>
         /// <returns>A serialized string</returns>
         internal string ToJson() => JsonConvert.SerializeObject(this, Settings);
-
-        #endregion Methods
     }
 }

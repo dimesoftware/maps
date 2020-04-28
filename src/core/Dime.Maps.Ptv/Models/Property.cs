@@ -7,8 +7,6 @@ namespace Dime.Maps
     /// </summary>
     internal class Property
     {
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Property"/> class
         /// </summary>
@@ -27,10 +25,6 @@ namespace Dime.Maps
             Value = value;
         }
 
-        #endregion Constructor
-
-        #region Properties
-
         /// <summary>
         ///
         /// </summary>
@@ -42,7 +36,5 @@ namespace Dime.Maps
         /// </summary>
         [JsonProperty("value")]
         internal string Value { get; set; }
-
-        #endregion Properties
     }
 }

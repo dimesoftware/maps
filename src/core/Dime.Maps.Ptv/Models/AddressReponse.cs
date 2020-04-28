@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using System.Linq;
+﻿using System.Linq;
+using Newtonsoft.Json;
 
 namespace Dime.Maps
 {
@@ -8,18 +8,12 @@ namespace Dime.Maps
     /// </summary>
     internal class AddressReponse
     {
-        #region Constructor
-
         /// <summary>
         /// Initializes a new instance of the <see cref="AddressReponse"/> class
         /// </summary>
         internal AddressReponse()
         {
         }
-
-        #endregion Constructor
-
-        #region Properties
 
         /// <summary>
         /// Gets or sets the error code
@@ -44,10 +38,6 @@ namespace Dime.Maps
             MetadataPropertyHandling = MetadataPropertyHandling.Ignore,
             DateParseHandling = DateParseHandling.None
         };
-
-        #endregion Properties
-
-        #region Methods
 
         /// <summary>
         /// Gets the coordinates from the instance
@@ -77,7 +67,5 @@ namespace Dime.Maps
         /// </summary>
         /// <returns>A serialized string</returns>
         internal string ToJson() => JsonConvert.SerializeObject(this, Settings);
-
-        #endregion Methods
     }
 }
