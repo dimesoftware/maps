@@ -3,3 +3,4 @@
 *.vs
 NuGet.config
 appsettings.development.json
+**/*.coverage

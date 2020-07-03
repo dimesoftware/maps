@@ -1,0 +1,36 @@
+pool:
+  vmImage: windows-latest
+variables:
+  BuildConfiguration: 'Release'
+  token: ''
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: eliostruyf.build-task.custom-build-task.file-creator@5
+  displayName: 'File Creator'
+  inputs:
+    filepath: src/test/bin/Release/netcoreapp3.1/appsettings.test.json
+    filecontent: |
+     {
+       "token": "$(token)",
+       "user": "xtok",
+       "url": "https://api-eu-test.cloud.ptvgroup.com"
+     }
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'

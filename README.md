@@ -35,9 +35,9 @@ GeoCoordinate? address =  await api.GeocodeAsync("Schaliënhoevedreef", "20T", "
 
 ## Contributing
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
 
-Please make sure to update tests as appropriate.
+Pull requests are welcome. Please check out the contribution and code of conduct guidelines.
 
 ## License
 
