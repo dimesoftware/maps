@@ -2,7 +2,6 @@ pool:
   vmImage: windows-latest
 variables:
   BuildConfiguration: 'Release'
-  token: ''
 
 steps:
 - task: DotNetCoreCLI@2
