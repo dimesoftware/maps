@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Newtonsoft.Json;
 
 namespace Dime.Maps
@@ -6,6 +7,7 @@ namespace Dime.Maps
     /// <summary>
     /// Represents a response to the XLocate web api
     /// </summary>
+    [ExcludeFromCodeCoverage]
     internal class AddressReponse
     {
         /// <summary>
@@ -48,7 +50,7 @@ namespace Dime.Maps
             if (!ResultList.Any())
                 return null;
 
-            Point coordinates = ResultList.ElementAt(0).Coordinates.Point;
+            Point coordinates = ResultList.OrderByDescending(r => r.TotalScore).ElementAt(0).Coordinates.Point;
             double? x = coordinates?.X;
             double? y = coordinates?.Y;
 

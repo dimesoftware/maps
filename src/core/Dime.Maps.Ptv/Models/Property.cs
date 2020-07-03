@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
 namespace Dime.Maps
 {
     /// <summary>
     ///
     /// </summary>
+    [ExcludeFromCodeCoverage]
     internal class Property
     {
         /// <summary>

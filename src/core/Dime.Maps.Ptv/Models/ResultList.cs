@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
 namespace Dime.Maps
 {
     /// <summary>
     /// Represents the content bit in the response from the XLocate web api
     /// </summary>
+    [ExcludeFromCodeCoverage]
     internal class ResultList
     {
         /// <summary>

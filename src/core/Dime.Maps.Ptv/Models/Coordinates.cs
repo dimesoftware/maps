@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
 namespace Dime.Maps
 {
     /// <summary>
     /// Represents a wrapper around the coordinate to include the type
     /// </summary>
+    [ExcludeFromCodeCoverage]
     internal class Coordinates
     {
         /// <summary>

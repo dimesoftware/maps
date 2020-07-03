@@ -1,10 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
 namespace Dime.Maps
 {
     /// <summary>
     /// Represents extra options that go in the request
     /// </summary>
+    [ExcludeFromCodeCoverage]
     internal class PtvRequestOption
     {
         /// <summary>

@@ -54,90 +54,99 @@ namespace Dime.Maps.Tests
             => Assert.ThrowsException<ArgumentNullException>(() => new PtvGeocoder(_url, _user, string.Empty));
 
         [TestMethod]
-        public async Task PtvApi_GetAddress_CountryInISO2_ReturnsCorrectCoordinates()
+        public async Task PtvApi_GetAddress_CountryInISO2_ShouldReturnCorrectCoordinates()
         {
             PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
             GeoCoordinate? address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BE");
 
-            double x = 4.35;
-            double y = 51.22;
-
-            //Assert.IsTrue(address.Type == "PlainPoint");
-            Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
-            Assert.IsTrue(address?.Latitude > y * 0.9 && address?.Latitude < y * 1.1);
+            AssertCoordinates(address.GetValueOrDefault(), 4.359231, 51.219501);
         }
 
         [TestMethod]
-        public async Task PtvApi_GetAddress_CountryInISO3_ReturnsCorrectCoordinates()
+        public async Task PtvApi_GetAddress_CountryInISO3_ShouldReturnCorrectCoordinates()
         {
             PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
             GeoCoordinate? address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BEL");
 
-            double x = 4.35;
-            double y = 51.22;
-
-            //Assert.IsTrue(address.Type == "PlainPoint");
-            Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
-            Assert.IsTrue(address?.Latitude > y * 0.9 && address?.Latitude < y * 1.1);
+            AssertCoordinates(address.GetValueOrDefault(), 4.359231, 51.219501);
         }
 
         [TestMethod]
-        public async Task PtvApi_GetAddress_CountryInEnglish_ReturnsCorrectCoordinates()
+        public async Task PtvApi_GetAddress_CountryInEnglish_ShouldReturnCorrectCoordinates()
         {
             PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
             GeoCoordinate? address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "Belgium");
 
-            double x = 4.35;
-            double y = 51.22;
-
-            //Assert.IsTrue(address.Type == "PlainPoint");
-            Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
-            Assert.IsTrue(address?.Latitude > y * 0.9 && address?.Latitude < y * 1.1);
+            AssertCoordinates(address.GetValueOrDefault(), 4.359231, 51.219501);
         }
 
         [DataTestMethod]
-        [DataRow("Katwilgweg 2, 2050 Antwerpen", "BE", 4.35, 51.22)]
+        [DataRow("Katwilgweg 2, 2050 Antwerpen", "BE", 4.359231, 51.219501)]
         [TestCategory("Map")]
-        public async Task PtvApi_GetAddressByText_CountryInISO2_ReturnsCorrectCoordinates(string street, string country, double x, double y)
+        public async Task PtvApi_GetAddressByText_CountryInISO2_ShouldReturnCorrectCoordinates(string street, string country, double x, double y)
         {
             PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
             GeoCoordinate? address = await api.GeocodeAsync(street, country);
 
-            //Assert.IsTrue(address.Type == "PlainPoint");
-            Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
-            Assert.IsTrue(address?.Latitude > y * 0.9 && address?.Latitude < y * 1.1);
+            AssertCoordinates(address.GetValueOrDefault(), x, y);
         }
 
         [DataTestMethod]
-        [DataRow("Katwilgweg 2, 2050 Antwerpen", "BEL", 4.35, 51.22)]
+        [DataRow("Katwilgweg 2, 2050 Antwerpen", "BEL", 4.359231, 51.219501)]
         [TestCategory("Map")]
-        public async Task PtvApi_GetAddressByText_AllAccurateParameters_ISO3_ReturnsCorrectCoordinates(string street, string country, double x, double y)
+        public async Task PtvApi_GetAddressByText_AllAccurateParameters_ISO3_ShouldReturnCorrectCoordinates(string street, string country, double x, double y)
         {
             PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
             GeoCoordinate? address = await api.GeocodeAsync(street, country);
 
-            //Assert.IsTrue(address.Type == "PlainPoint");
-            Assert.IsTrue(address?.Longitude > x * 0.9 && address?.Longitude < x * 1.1);
-            Assert.IsTrue(address?.Latitude > y * 0.9 && address?.Latitude < y * 1.1);
+            AssertCoordinates(address.GetValueOrDefault(), x, y);
         }
 
         [DataTestMethod]
-        [DataRow("Katwilgweg 2, 2050 Antwerpen", "Belgium", 4.35, 51.22)]
-        [DataRow("192 Market Square, , B27 4KT, Birmingham", "GB", 0, 0)]
+        [DataRow("Katwilgweg 2, 2050 Antwerpen", "Belgium", 4.359231, 51.219501)]
+        [DataRow("192 Market Square, , B27 4KT, Birmingham", "GB", -1.82313, 52.45387)]
         [TestCategory("Map")]
-        public async Task PtvApi_GetAddressByText_CountryInEnglish_ReturnsCorrectCoordinates(string street, string country, double x, double y)
+        public async Task PtvApi_GetAddressByText_CountryInEnglish_ShouldReturnCorrectCoordinates(string street, string country, double x, double y)
         {
             PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
             GeoCoordinate? address = await api.GeocodeAsync(street, country);
+
+            AssertCoordinates(address.GetValueOrDefault(), x, y);
         }
 
         [DataTestMethod]
-        [DataRow("Maschstraße - K36, P. Nr. 1718067, 32120, Hiddenhausen", "DE")]
+        [DataRow("Maschstraße - K36, P. Nr. 1718067, 32120, Hiddenhausen", "DE", 8.616735, 52.171363)]
+        [DataRow("1 Avenue du Château, 62124, Vélu", "FR", 2.972791, 50.104375)]
+        [DataRow("62124, Vélu, 1 Avenue du Château", "FR", 2.972791, 50.104375)]
+        [DataRow("62124, 1 Avenue du Château, Vélu", "FR", 2.972791, 50.104375)]
+        [DataRow("1 Avenue du Château, Vélu, 62124", "FR", 2.972791, 50.104375)]
         [TestCategory("Map")]
-        public async Task PtvApi_GetAddressByText(string address, string country)
+        public async Task PtvApi_GetAddressByText_ShouldReturnCorrectCoordinates(string address, string country, double x, double y)
         {
             PtvGeocoder api = new PtvGeocoder(_url, _user, _token);
             GeoCoordinate? result = await api.GeocodeAsync(address, country);
+
+            AssertCoordinates(result.GetValueOrDefault(), x, y);
         }
+
+        private void AssertCoordinates(GeoCoordinate address, double x, double y)
+            => Assert.IsTrue(GetDistance(address.Longitude, address.Latitude, x, y) <= 1);
+
+        private double GetDistance(double lat1, double lon1, double lat2, double lon2)
+        {
+            const int radius = 6371; // Radius of the earth in km
+            double dLat = ToRadians(lat2 - lat1);
+            double dLon = ToRadians(lon2 - lon1);
+            double a =
+                Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                Math.Cos(ToRadians(lat1)) * Math.Cos(ToRadians(lat2)) *
+                Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
+
+            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            var d = radius * c;  // Distance in km
+            return d;
+        }
+
+        private double ToRadians(double deg) => deg * (Math.PI / 180);
     }
 }
