@@ -8,7 +8,7 @@
     <Description>Geocoding using PTV</Description>
     <Copyright>Copyright © 2020</Copyright>
     <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUrl>http://dimenuget.azurewebsites.net/Images/dimenuget.png</PackageIconUrl>
+    <PackageIconUrl>https://cdn.dime-software.com/dime-software/logo-shape.png</PackageIconUrl>
     <Version>1.1.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>

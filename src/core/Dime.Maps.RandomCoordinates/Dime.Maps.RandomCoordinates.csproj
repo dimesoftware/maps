@@ -23,12 +23,12 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Authors>Dimenics</Authors>
-    <Company>Dimenics</Company>
+    <Authors>Dime Software</Authors>
+    <Company>Dime Software</Company>
     <Product>Dime.Scheduler</Product>
     <Description>Creates random coordinates</Description>
     <Copyright>Copyright 2021</Copyright>
     <NeutralLanguage>en</NeutralLanguage>
-    <PackageIconUrl>https://github.com/dimenics/dimenics/blob/master/assets/dimenicslogo.png?raw=true</PackageIconUrl>
+    <PackageIconUrl>https://cdn.dime-software.com/dime-software/logo-shape.png</PackageIconUrl>
   </PropertyGroup>
 </Project>
