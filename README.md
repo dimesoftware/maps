@@ -19,8 +19,8 @@ dotnet add package TurtleRoute
 ``` csharp
 using TurtleRoute;
 
- Geocoder api = new("MYTOKEN");
- GeoCoordinate? address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BE");
+Geocoder api = new("MYTOKEN");
+GeoCoordinate? address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BE");
 ```
 
 ## Contributing
