@@ -8,7 +8,7 @@ This is a project that supports the map functionalities in Dime.Scheduler. Most 
 
 ## Installation
 
-Use the package manager NuGet to install Dime.Maps and Dime.Maps.Ptv:
+Use the package manager NuGet to install the package:
 
 ```cli
 dotnet add package TurtleRoute
