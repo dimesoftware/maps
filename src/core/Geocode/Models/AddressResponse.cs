@@ -7,7 +7,7 @@ namespace TurtleRoute
     {
         [JsonConstructor]
         public AddressResponse()
-        {            
+        {
         }
 
         public AddressResponse(List<Location> locations)

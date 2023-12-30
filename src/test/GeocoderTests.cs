@@ -64,7 +64,6 @@ namespace TurtleRoute.Tests
             AssertCoordinates(address.GetValueOrDefault(), 4.359231, 51.219501);
         }
 
-
         [DataTestMethod]
         [DataRow("Maschstraﬂe - K36, P. Nr. 1718067, 32120, Hiddenhausen", "DE", 8.616735, 52.171363)]
         [DataRow("1 Avenue du Ch‚teau, 62124, VÈlu", "FR", 2.972791, 50.104375)]

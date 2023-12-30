@@ -40,6 +40,4 @@ namespace TurtleRoute
         [JsonPropertyName("quality")]
         public Quality Quality { get; }
     }
-
-
 }

@@ -20,6 +20,4 @@ namespace TurtleRoute
         [JsonPropertyName("longitude")]
         public double Longitude { get; }
     }
-
-
 }

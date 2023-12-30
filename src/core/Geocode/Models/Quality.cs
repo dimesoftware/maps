@@ -15,6 +15,4 @@ namespace TurtleRoute
         [JsonPropertyName("totalScore")]
         public int TotalScore { get; }
     }
-
-
 }
