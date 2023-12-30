@@ -1,8 +1,4 @@
-<div align="center"><img src="assets/logo.png" alt="Logo"></div>
-
-<div align="center">
-<h1> Turtle Route </h1>
-</div>
+# Turtle Route
 
 This is a project that supports the map functionalities in Dime.Scheduler. Most notably, the geocoding service is essential to the performance of the map as it eliminates the need for ad-hoc geocoding.
 
