@@ -2,16 +2,10 @@
 
 namespace TurtleRoute
 {
-    public readonly struct GeoCoordinate : IEquatable<GeoCoordinate>
+    public readonly struct GeoCoordinate(double latitude, double longitude) : IEquatable<GeoCoordinate>
     {
-        public GeoCoordinate(double latitude, double longitude)
-        {
-            Latitude = latitude;
-            Longitude = longitude;
-        }
-
-        public double Latitude { get; }
-        public double Longitude { get; }
+        public double Latitude { get; } = latitude;
+        public double Longitude { get; } = longitude;
 
         public override string ToString()
             => $"{Latitude},{Longitude}";

@@ -2,22 +2,13 @@
 
 namespace TurtleRoute
 {
-    public class ReferencePosition
+    [method: JsonConstructor]
+    public class ReferencePosition(double latitude, double longitude)
     {
-        [JsonConstructor]
-        public ReferencePosition(
-            double latitude,
-            double longitude
-        )
-        {
-            Latitude = latitude;
-            Longitude = longitude;
-        }
-
         [JsonPropertyName("latitude")]
-        public double Latitude { get; }
+        public double Latitude { get; } = latitude;
 
         [JsonPropertyName("longitude")]
-        public double Longitude { get; }
+        public double Longitude { get; } = longitude;
     }
 }

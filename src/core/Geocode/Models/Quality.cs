@@ -2,17 +2,10 @@
 
 namespace TurtleRoute
 {
-    public class Quality
+    [method: JsonConstructor]
+    public class Quality(int totalScore)
     {
-        [JsonConstructor]
-        public Quality(
-            int totalScore
-        )
-        {
-            TotalScore = totalScore;
-        }
-
         [JsonPropertyName("totalScore")]
-        public int TotalScore { get; }
+        public int TotalScore { get; } = totalScore;
     }
 }
