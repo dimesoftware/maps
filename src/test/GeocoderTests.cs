@@ -34,11 +34,11 @@ namespace TurtleRoute.Tests
         }
 
         [TestMethod]
-        public void PtvApi_Constructor_InvalidParameter_Token_ThrowsArgumentNullException()
+        public void Geocoding_Constructor_InvalidParameter_Token_ThrowsArgumentNullException()
             => Assert.ThrowsException<ArgumentNullException>(() => new Geocoder(string.Empty));
 
         [TestMethod]
-        public async Task PtvApi_GetAddress_CountryInISO2_ShouldReturnCorrectCoordinates()
+        public async Task Geocoding_GetAddress_CountryInISO2_ShouldReturnCorrectCoordinates()
         {
             Geocoder api = new(_token);
             GeoCoordinate? address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BE");
@@ -47,7 +47,7 @@ namespace TurtleRoute.Tests
         }
 
         [TestMethod]
-        public async Task PtvApi_GetAddress_CountryInISO3_ShouldReturnCorrectCoordinates()
+        public async Task Geocoding_GetAddress_CountryInISO3_ShouldReturnCorrectCoordinates()
         {
             Geocoder api = new(_token);
             GeoCoordinate? address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "BEL");
@@ -56,7 +56,7 @@ namespace TurtleRoute.Tests
         }
 
         [TestMethod]
-        public async Task PtvApi_GetAddress_CountryInEnglish_ShouldReturnCorrectCoordinates()
+        public async Task Geocoding_GetAddress_CountryInEnglish_ShouldReturnCorrectCoordinates()
         {
             Geocoder api = new(_token);
             GeoCoordinate? address = await api.GeocodeAsync("Katwilgweg", "2", "2050", "Antwerpen", "", "Belgium");
@@ -70,7 +70,7 @@ namespace TurtleRoute.Tests
         [DataRow("62124, Vélu, 1 Avenue du Château", "FR", 2.972791, 50.104375)]
         [DataRow("62124, 1 Avenue du Château, Vélu", "FR", 2.972791, 50.104375)]
         [DataRow("1 Avenue du Château, Vélu, 62124", "FR", 2.972791, 50.104375)]
-        public async Task PtvApi_GetAddressByText_ShouldReturnCorrectCoordinates(string address, string country, double x, double y)
+        public async Task Geocoding_GetAddressByText_ShouldReturnCorrectCoordinates(string address, string country, double x, double y)
         {
             Geocoder api = new(_token);
             GeoCoordinate? res = await api.GeocodeAsync(address, country);
