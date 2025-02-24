@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0</TargetFrameworks>
+		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
 		<Authors>Dime Software</Authors>
 		<Company>Dime Software</Company>
 		<Product>Turtle Route</Product>
@@ -17,9 +17,10 @@
 		<RepositoryType>git</RepositoryType>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Refit" Version="7.0.0" />
+		<PackageReference Include="Azure.Maps.Routing" Version="1.0.0-beta.4" />
+		<PackageReference Include="Azure.Maps.Search" Version="2.0.0-beta.4" />
 	</ItemGroup>
 	<ItemGroup>		
-		<None Include="README.md" Pack="true" PackagePath="\"/>		
+		<None Include="README.md" Pack="true" PackagePath="\" />		
 	</ItemGroup>
 </Project>

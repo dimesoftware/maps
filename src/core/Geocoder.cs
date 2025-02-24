@@ -1,7 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
-using Refit;
+using Azure;
+using Azure.Core.GeoJson;
+using Azure.Maps.Search;
+using Azure.Maps.Search.Models;
 
 namespace TurtleRoute
 {
@@ -19,28 +21,24 @@ namespace TurtleRoute
 
         public async Task<GeoCoordinate?> GeocodeAsync(string street, string streetNo, string zipCode, string city, string state, string country)
         {
-            Address address = new(country, state, zipCode, city, street, streetNo);
+            AzureKeyCredential credential = new(Token);
+            MapsSearchClient client = new(credential);
 
-            IGeocodingApi ptvApi = RestService.For<IGeocodingApi>("https://api.myptv.com");
-            AddressResponse resp = await ptvApi.GetAddress(address, Token);
+            Response<GeocodingResponse> searchResult = await client.GetGeocodingAsync($"{street} {streetNo}, {zipCode} {city}, {state}, {country}");
 
-            if (resp.Locations.Count == 0)
-                return null;
-
-            ReferencePosition position = resp.Locations.OrderByDescending(x => x.Quality.TotalScore).FirstOrDefault()?.ReferencePosition;
-            return new GeoCoordinate(position.Latitude, position.Longitude);
+            GeoPosition resp = searchResult.Value.Features[0].Geometry.Coordinates;
+            return new(resp.Latitude, resp.Longitude);
         }
 
         public async Task<GeoCoordinate?> GeocodeAsync(string address, string countryFilter)
         {
-            IGeocodingApi ptvApi = RestService.For<IGeocodingApi>("https://api.myptv.com");
-            AddressResponse resp = await ptvApi.GetAddressByText(address, countryFilter, Token);
+            AzureKeyCredential credential = new(Token);
+            MapsSearchClient client = new(credential);
 
-            if (resp.Locations.Count == 0)
-                return null;
+            Response<GeocodingResponse> searchResult = await client.GetGeocodingAsync(address + ", " + countryFilter);
 
-            ReferencePosition position = resp.Locations.OrderByDescending(x => x.Quality.TotalScore).FirstOrDefault()?.ReferencePosition;
-            return new GeoCoordinate(position.Latitude, position.Longitude);
+            GeoPosition resp = searchResult.Value.Features[0].Geometry.Coordinates;
+            return new(resp.Latitude, resp.Longitude);
         }
     }
 }
